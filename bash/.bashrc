@@ -1,4 +1,3 @@
-#source ~/.git_completion.sh
 source /etc/profile.d/bash-completion.sh 
 
 alias ll='ls -l'
