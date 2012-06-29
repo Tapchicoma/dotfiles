@@ -1,0 +1,22 @@
+[core]
+	editor = vim
+	autocrlf = false
+	safecrlf = true
+[color]
+	diff = always
+	branch = true
+	grep = auto
+	interactive = auto
+	status = false
+[diff]
+	tool = vimdiff
+[log]
+	decorate = short
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --color
+    type = cat-file -t
+    dump = cat-file -p
