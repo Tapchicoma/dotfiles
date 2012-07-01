@@ -61,6 +61,11 @@
 (setq ispell-extra-args '("--sug-mode=fast"))
 (setq ispell-dictionary "en")
 
+;; yasnippet settings
+(require 'yasnippet)
+(setq yas/snippet-dirs '(concat dotfiles-dir "/snippets"))
+(yas/global-mode 1)
+
 ;; autocomplete settings
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
