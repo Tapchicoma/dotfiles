@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name : android xml namespace
+# key : xnlnsa
+# --
+xmlnsa:android="https://schemas.android.com/apk/res/android"
+$0
