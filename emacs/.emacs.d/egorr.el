@@ -42,6 +42,20 @@
 (global-set-key (kbd "<C-s right>") 'winner-redo)
 (winner-mode t)
 
+;; android start debug compilation
+(defun android-start-debug ()
+  (interactive)
+  (android-ant "clean debug"))
+
+(defun android-install-debugapp ()
+  (interactive)
+  (android-ant "installd"))
+
+;; key configuration
+(global-set-key (kbd "<f11>") 'toggle-fullscreen)
+(global-set-key (kbd "<f3>") 'android-start-debug)
+(global-set-key (kbd "<f4>") 'android-install-debugapp)
+
 ;; spell check settings
 (setq ispell-program-name "aspell")
 (setq ispell-extra-args '("--sug-mode=fast"))
