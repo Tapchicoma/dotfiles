@@ -56,6 +56,9 @@
 ;; set monday the first day of the week in calendar
 (setq calendar-week-start-day 1)
 
+;; add android mode
+(require 'android-mode)
+
 ;; load android sdk tool for emacs
 (add-to-list 'load-path (concat dotfiles-dir "/vendor"))
 (require 'android)
