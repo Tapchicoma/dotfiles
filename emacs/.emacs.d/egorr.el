@@ -82,5 +82,10 @@
 (add-to-list 'load-path (concat dotfiles-dir "/vendor"))
 (require 'android)
 
+;; java mode hook
+(defun java-mode-prehooks ()
+  (whitespace-mode t))
+(add-hook 'java-mode-hook 'java-mode-prehooks)
+
 ;; add auto enable java-mode for java files
 (add-to-list 'auto-mode-alist '("\\.java$" . java-mode))
