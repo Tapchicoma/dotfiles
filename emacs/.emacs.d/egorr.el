@@ -82,9 +82,13 @@
 (add-to-list 'load-path (concat dotfiles-dir "/vendor"))
 (require 'android)
 
+;; add java indentation to annotations
+(require 'java-mode-indent-annotations)
+
 ;; java mode hook
 (defun java-mode-prehooks ()
-  (whitespace-mode t))
+  (whitespace-mode t)
+  (java-mode-indent-annotations-setup))
 (add-hook 'java-mode-hook 'java-mode-prehooks)
 
 ;; add auto enable java-mode for java files
