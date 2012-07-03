@@ -71,6 +71,7 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
 (ac-config-default)
+(add-to-list 'ac-modes 'nxml-mode)
 
 ;; set monday the first day of the week in calendar
 (setq calendar-week-start-day 1)
