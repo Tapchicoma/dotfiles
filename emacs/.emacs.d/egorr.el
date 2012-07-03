@@ -76,6 +76,9 @@
 ;; set monday the first day of the week in calendar
 (setq calendar-week-start-day 1)
 
+;; set nxml mode indentation to 4 spaces
+(setq nxml-child-indent 4)
+
 ;; add android mode
 (require 'android-mode)
 
