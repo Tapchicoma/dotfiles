@@ -2,5 +2,5 @@
 # name : android xml namespace
 # key : xmlnsa
 # --
-xmlnsa:android="https://schemas.android.com/apk/res/android"
+xmlns:android="https://schemas.android.com/apk/res/android"
 $0
