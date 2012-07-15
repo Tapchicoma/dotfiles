@@ -3,7 +3,10 @@
 #key : class
 # expand-env : ((yas/indent-line 'fixed) (yas/wrap-aroud-region))
 # --
-public class ${1:`(file-name-sans-extension (buffer-name))`} $0{
+/**
+ * $1
+ */
+public class ${2:`(file-name-sans-extension (buffer-name))`} $0{
     //
     // Interfaces
     //
