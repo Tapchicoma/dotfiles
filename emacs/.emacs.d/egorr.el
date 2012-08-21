@@ -89,6 +89,11 @@
 ;; add java indentation to annotations
 (require 'java-mode-indent-annotations)
 
+;; nxml mode hook
+(defun nxml-mode-prehooks ()
+  (hl-line-mode t))
+(add-hook 'nxml-mode-hook 'nxml-mode-prehooks)
+
 ;; java mode hook
 (defun java-mode-prehooks ()
   (whitespace-mode t)
