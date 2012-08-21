@@ -1,0 +1,17 @@
+# -*- mode : snippet -*-
+# name : onitemclicklistener
+# key : onitemclicklistener
+# --
+/** $1. */
+private final OnItemClickListener $2 = new OnItemClickListener() {
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public final void onItemClick(final AdapterView<?> parent,
+                                      final View v,
+                                      final int position,
+                                      final long id) {
+            $0
+        }
+    };
