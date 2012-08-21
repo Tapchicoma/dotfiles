@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name : onclicklistener
+# key : onclicklistener
+# --
+/** $1. */
+private final OnClickListener $2 = new OnClickListener() {
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public final void onClick(final View view) {
+            $0
+        }
+    };
