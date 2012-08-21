@@ -92,6 +92,7 @@
 ;; java mode hook
 (defun java-mode-prehooks ()
   (whitespace-mode t)
+  (hl-line-mode t)
   (java-mode-indent-annotations-setup))
 (add-hook 'java-mode-hook 'java-mode-prehooks)
 
