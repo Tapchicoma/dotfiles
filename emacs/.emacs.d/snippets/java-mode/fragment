@@ -41,7 +41,11 @@ public class ${2:`(file-name-sans-extension (buffer-name))`} extends Fragment {
      * @return new Fragment
      */
     public static final $2 newInstance() {
-        return new $2();
+        final $2 frg = new $2();
+        final Bundle args = new Bundle();
+        frg.setArguments(args);
+
+        return frg;
     }
 
     /**
