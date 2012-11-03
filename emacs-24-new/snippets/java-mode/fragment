@@ -1,0 +1,64 @@
+# -*- mode: snippet -*-
+# name : android basic fragment implementation
+# key : fragment
+# expand-env : ((yas/indent-line 'fixed) (yas/wrap-aroud-region))
+# --
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.view.View;
+
+/**
+ * $1
+ */
+public class ${2:`(file-name-sans-extension (buffer-name))`} extends Fragment {
+    //
+    // Interfaces
+    //
+
+    //
+    // Fields
+    //
+
+    /** This Fragment tag. */
+    public static final String TAG = "$2";
+
+    //
+    // Constructors
+    //
+
+    //
+    // Nested classes
+    //
+
+    //
+    // Methods
+    //
+
+    /**
+     * Instantiate this fragment.
+     * @return new Fragment
+     */
+    public static final $2 newInstance() {
+        final $2 frg = new $2();
+        final Bundle args = new Bundle();
+        frg.setArguments(args);
+
+        return frg;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final View onCreateView(final LayoutInflater inflater,
+                                   final ViewGroup container,
+                                   final Bundle savedInstanceState) {
+        final View frgView = inflater.inflate(R.layout.$0,
+                                              container,
+                                              false);
+
+        return frgView;
+    }
+}

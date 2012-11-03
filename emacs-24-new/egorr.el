@@ -1,5 +1,8 @@
 ;; #### INIT VARIABLES ###
 
+;; Show debug info
+(setq debug-on-error t)
+
 ;; Set config dir
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
@@ -44,6 +47,10 @@
 (setq ispell-extra-args '("--sug-mode=fast"))
 (setq ispell-dictionary "en")
 
+;; yasnippet snippets directory
+(setq yas-snippet-dirs `(,(concat dotfiles-dir "snippets")
+                         ,(concat dotfiles-dir "elpa/yasnippet-0.8.0/snippets")))
+
 ;;; ------------------------------------------------------------------------------------------
 
 ;; #### FUNCTIONS ####
@@ -81,6 +88,11 @@
   (setq winner-dont-bind-my-keys t)
   (winner-mode t))
 
+;; load yasnippet
+(defun setup-yasnippet ()
+  (require 'yasnippet)
+  (yas-global-mode 1))
+
 ;;; -------------------------------------------------------------------------------------------
 
 ;; #### KEY BINDINGS ####
@@ -99,17 +111,12 @@
 (defun init-my-config ()
   (print "load my config")
   (load-my-theme)
-  (setup-winner))
+  (setup-winner)
+  (setup-yasnippet))
 
 (add-hook 'egorr-hook (lambda () (init-my-config)))
 
 ;;; -------------------------------------------------------------------------------------------
-
-;; yasnippet settings
-;; (require 'yasnippet)
-;; (setq yas/root-directory "~/.emacs.d/snippets")
-;; (yas/load-directory yas/root-directory)
-;; (yas-global-mode 1)
 
 ;; autocomplete settings
 ;; (add-to-list 'load-path (concat dotfiles-dir "elpa/popup-0.5"))

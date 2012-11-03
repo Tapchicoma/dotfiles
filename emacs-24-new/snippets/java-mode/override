@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name : java override annotation
+# key : override
+# --
+/**
+ * {@inheritDoc}
+ */
+@Override
+$0

@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name : loadercallbacks
+# key : loadercallbacks
+# --
+/** $1. */
+private final LoaderManager.LoaderCallbacks<$2> $3
+    = new LoaderManager.LoaderCallbacks<$2>() {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final Loader<$2> onCreateLoader(final int id,
+                                           final Bundle args) {
+        $0
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void onLoadFinished(final Loader<$2> loader,
+                                     final $2 data) {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void onLoaderReset(final Loader<$2> loader) {
+    }
+};
