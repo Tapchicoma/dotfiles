@@ -25,6 +25,25 @@
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
+;; whitespace mode settings
+(setq whitespace-style '(trailing lines space-before-tab
+                                  indentation space-after-tab)
+      whitespace-line-column 120)
+
+;; Delete selection when typing
+(delete-selection-mode t)
+
+;; set monday the first day of the week in calendar
+(setq calendar-week-start-day 1)
+
+;; set nxml mode indentation to 4 spaces
+(setq nxml-child-indent 4)
+
+;; spell check settings
+(setq ispell-program-name "aspell")
+(setq ispell-extra-args '("--sug-mode=fast"))
+(setq ispell-dictionary "en")
+
 ;;; ------------------------------------------------------------------------------------------
 
 ;; #### FUNCTIONS ####
@@ -51,6 +70,17 @@
 (defun load-my-theme ()
   (load-theme 'solarized-dark t))
 
+;; always linum-mode
+(defun linum-mode-find-file-hook ()
+ (linum-mode t))
+(add-hook 'find-file-hook 'linum-mode-find-file-hook)
+
+;; add winner mode (manage emacs windows)
+(defun setup-winner ()
+  (require 'winner)
+  (setq winner-dont-bind-my-keys t)
+  (winner-mode t))
+
 ;;; -------------------------------------------------------------------------------------------
 
 ;; #### KEY BINDINGS ####
@@ -59,6 +89,8 @@
 (global-set-key (kbd "<f4>") 'android-install-debugapp)
 (global-set-key (kbd "<f11>") 'toggle-fullscreen)
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "<C-x left>") 'winner-undo)
+(global-set-key (kbd "<C-x right>") 'winner-redo)
 
 ;;; -------------------------------------------------------------------------------------------
 
@@ -66,45 +98,12 @@
 
 (defun init-my-config ()
   (print "load my config")
-  (load-my-theme))
+  (load-my-theme)
+  (setup-winner))
 
 (add-hook 'egorr-hook (lambda () (init-my-config)))
 
 ;;; -------------------------------------------------------------------------------------------
-;; Theme init
-;; (add-to-list 'load-path (concat dotfiles-dir "elpa/solarized-theme-0.5.0"))
-;; (add-to-list 'custom-theme-load-path (concat dotfiles-dir "elpa/solarized-theme-0.5.0"))
-;; (load-theme 'solarized-dark t)
-
-
-;; whitespace mode settings
-;; (setq whitespace-style '(trailing lines space-before-tab
-;;                                  indentation space-after-tab)
-;;      whitespace-line-column 80)
-
-
-;; Delete selection when typing
-;; (delete-selection-mode t)
-
-;; always linum-mode
-;; (defun linum-mode-find-file-hook ()
-;;  (linum-mode t))
-;; (add-hook 'find-file-hook 'linum-mode-find-file-hook)
-
-;; add winner mode (manage emacs windows)
-;; (require 'winner)
-;; (setq winner-dont-bind-my-keys t)
-;; (global-set-key (kbd "<C-s-left>") 'winner-undo)
-;; (global-set-key (kbd "<C-s right>") 'winner-redo)
-;; (winner-mode t)
-
-;; ;; key configuration
-
-
-;; spell check settings
-;; (setq ispell-program-name "aspell")
-;; (setq ispell-extra-args '("--sug-mode=fast"))
-;; (setq ispell-dictionary "en")
 
 ;; yasnippet settings
 ;; (require 'yasnippet)
@@ -124,12 +123,6 @@
 ;; (delq 'ac-source-yasnippet ac-sources)
 ;; (ac-set-trigger-key "TAB")
 ;; (add-to-list 'ac-modes 'nxml-mode)
-
-;; set monday the first day of the week in calendar
-;; (setq calendar-week-start-day 1)
-
-;; set nxml mode indentation to 4 spaces
-;; (setq nxml-child-indent 4)
 
 ;; add android mode
 ;; (add-to-list 'load-path (concat dotfiles-dir "elpa/android-mode-0.2.1"))
