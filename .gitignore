@@ -10,3 +10,4 @@ emacs-24-new/.*
 emacs-24-new/places
 emacs-24-new/ac-comphist.dat
 emacs-24-new/history
+emacs-24-new/ac/ac*

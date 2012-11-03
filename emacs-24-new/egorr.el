@@ -49,7 +49,15 @@
 
 ;; yasnippet snippets directory
 (setq yas-snippet-dirs `(,(concat dotfiles-dir "snippets")
-                         ,(concat dotfiles-dir "elpa/yasnippet-0.8.0/snippets")))
+                         ,(concat dotfiles-dir "vendor/yasnippet/snippets")))
+
+;; autocomplete settings
+(setq ac-comphist-file (concat dotfiles-dir "ac/ac-comphist.dat"))
+
+;; add loading all from vendor dir
+(add-to-list 'load-path (concat dotfiles-dir "vendor"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/yasnippet"))
 
 ;;; ------------------------------------------------------------------------------------------
 
@@ -93,6 +101,15 @@
   (require 'yasnippet)
   (yas-global-mode 1))
 
+;; load autocomplete
+(defun setup-autocomplete ()
+  (require 'auto-complete-config)
+  (add-to-list 'ac-dictionary-directories (concat dotfiles-dir "ac/ac-dict"))
+  (ac-config-default)
+  (ac-set-trigger-key "TAB")
+  (add-to-list 'ac-modes 'nxml-mode)
+)
+
 ;;; -------------------------------------------------------------------------------------------
 
 ;; #### KEY BINDINGS ####
@@ -112,24 +129,13 @@
   (print "load my config")
   (load-my-theme)
   (setup-winner)
-  (setup-yasnippet))
+  (setup-yasnippet)
+  (setup-autocomplete)
+  )
 
 (add-hook 'egorr-hook (lambda () (init-my-config)))
 
 ;;; -------------------------------------------------------------------------------------------
-
-;; autocomplete settings
-;; (add-to-list 'load-path (concat dotfiles-dir "elpa/popup-0.5"))
-;; (add-to-list 'load-path (concat dotfiles-dir "elpa/auto-complete-1.4"))
-;; (add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
-;; (require 'auto-complete-config)
-;; (add-to-list 'ac-dictionary-directories (concat dotfiles-dir "ac-dict"))
-;; (setq ac-comphist-file (concat dotfiles-dir "ac-comphist.dat"))
-;; Try to remove on autocomplete update (current version is 1.4)
-;; (ac-config-default)
-;; (delq 'ac-source-yasnippet ac-sources)
-;; (ac-set-trigger-key "TAB")
-;; (add-to-list 'ac-modes 'nxml-mode)
 
 ;; add android mode
 ;; (add-to-list 'load-path (concat dotfiles-dir "elpa/android-mode-0.2.1"))
