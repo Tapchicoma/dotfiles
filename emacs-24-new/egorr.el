@@ -59,8 +59,18 @@
 
 ;; add loading all from vendor dir
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/cogre"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/common"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/contrib"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/ede"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/eieio"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/semantic"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/speedbar"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/srecode"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/tests"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/yasnippet"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/jdee/lisp"))
 
 ;;; ------------------------------------------------------------------------------------------
 
@@ -118,6 +128,14 @@
   (require 'android-mode)
   (require 'android))
 
+;; setup cedet
+(defun setup-cedet ()
+  (require 'cedet))
+
+;; setup jdee
+(defun setup-jdee ()
+  (require 'jde-autoload))
+
 ;;; -------------------------------------------------------------------------------------------
 
 ;; #### KEY BINDINGS ####
@@ -140,6 +158,8 @@
   (setup-yasnippet)
   (setup-autocomplete)
   (setup-android-mode)
+  (setup-cedet)
+  (setup-jdee)
   )
 
 (add-hook 'egorr-hook (lambda () (init-my-config)))

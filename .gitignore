@@ -11,3 +11,7 @@ emacs-24-new/places
 emacs-24-new/ac-comphist.dat
 emacs-24-new/history
 emacs-24-new/ac/ac*
+emacs-24-new/abbrev_defs
+emacs-24-new/ede-projects.el
+emacs-24-new/semanticdb
+emacs-24-new/srecode-map.el
