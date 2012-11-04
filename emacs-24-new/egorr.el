@@ -54,6 +54,9 @@
 ;; autocomplete settings
 (setq ac-comphist-file (concat dotfiles-dir "ac/ac-comphist.dat"))
 
+;; android mode
+(setq android-mode-sdk-dir "/opt/android-sdk-update-manager")
+
 ;; add loading all from vendor dir
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
@@ -108,7 +111,12 @@
   (ac-config-default)
   (ac-set-trigger-key "TAB")
   (add-to-list 'ac-modes 'nxml-mode)
-)
+  )
+
+;; load android-mode
+(defun setup-android-mode ()
+  (require 'android-mode)
+  (require 'android))
 
 ;;; -------------------------------------------------------------------------------------------
 
@@ -131,19 +139,12 @@
   (setup-winner)
   (setup-yasnippet)
   (setup-autocomplete)
+  (setup-android-mode)
   )
 
 (add-hook 'egorr-hook (lambda () (init-my-config)))
 
 ;;; -------------------------------------------------------------------------------------------
-
-;; add android mode
-;; (add-to-list 'load-path (concat dotfiles-dir "elpa/android-mode-0.2.1"))
-;; (require 'android-mode)
-
-;; load android sdk tool for emacs
-;; (add-to-list 'load-path (concat dotfiles-dir "vendor"))
-;; (require 'android)
 
 ;; add java indentation to annotations
 ;; (require 'java-mode-indent-annotations)
