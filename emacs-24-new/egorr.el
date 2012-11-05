@@ -1,7 +1,7 @@
 ;; #### INIT VARIABLES ###
 
 ;; Show debug info
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 ;; Set config dir
 (setq dotfiles-dir (file-name-directory
@@ -56,6 +56,17 @@
 
 ;; android mode
 (setq android-mode-sdk-dir "/opt/android-sdk-update-manager")
+
+;; semantic vars
+(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
+                                  global-semanticdb-minor-mode
+                                  global-semantic-idle-summary-mode
+                                  global-semantic-stickyfunc-mode
+                                  global-semantic-mru-bookmark-mode))
+;; (setq semantic-load-turn-everything-on t)
+
+;; jde vars
+(setq jde-compiler (quote (("eclipse java compiler server" "/home/egorr/.emacs.d/vendor/jdee/java/lib/ecj-4.3M3.jar"))))
 
 ;; add loading all from vendor dir
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
@@ -121,6 +132,8 @@
   (ac-config-default)
   (ac-set-trigger-key "TAB")
   (add-to-list 'ac-modes 'nxml-mode)
+  (add-to-list 'ac-modes 'jde-mode)
+  (add-hook 'jde-mode-hook (lambda () (push 'ac-source-semantic ac-sources)))
   )
 
 ;; load android-mode
@@ -130,11 +143,30 @@
 
 ;; setup cedet
 (defun setup-cedet ()
-  (require 'cedet))
+  (require 'cedet)
+  (require 'semantic)
+  )
 
 ;; setup jdee
 (defun setup-jdee ()
-  (require 'jde-autoload))
+  ;; (semantic-mode 1)
+  (require 'jde)
+  (require 'jde-ecj-flymake)
+  ;; (require 'semantic/senator)
+  ;; (require 'semantic/ia)
+  ;; (require 'semantic/wisnet)
+  ;; (require 'semantic/wisnet/java-tags)
+  (setq jde-auto-parse-enable nil)
+  (setq jde-enable-senator nil)
+  )
+
+;; setup flymake
+(defun setup-flymake ()
+  (require 'flymake)
+  (require 'flymake-cursor)
+  (add-to-list 'flymake-allowed-file-name-masks '("\\.java\\'" jde-ecj-server-flymake-init jde-ecj-flymake-cleanup))
+  (add-hook 'find-file-hook 'flymake-find-file-hook)
+  )
 
 ;;; -------------------------------------------------------------------------------------------
 
@@ -160,6 +192,7 @@
   (setup-android-mode)
   (setup-cedet)
   (setup-jdee)
+  (setup-flymake)
   )
 
 (add-hook 'egorr-hook (lambda () (init-my-config)))
@@ -180,16 +213,3 @@
 ;;   (hl-line-mode t)
 ;;   (java-mode-indent-annotations-setup))
 ;; (add-hook 'java-mode-hook 'java-mode-prehooks)
-
-;; add auto enable java-mode for java files
-;; (add-to-list 'auto-mode-alist '("\\.java$" . java-mode))
-
-;; malabar mode
-;; (require 'cedet)
-;; (require 'eieio)
-;; (require 'semantic)
-;; ;; (semantic-load-enable-minimum-features)
-;; (add-to-list 'load-path (concat dotfiles-dir "vendor/malabar-mode/lisp"))
-;; (require 'malabar-mode)
-;; (setq malabar-groovy-lib-dir (concat dotfiles-dir "vendor/malabar-mode/lib"))
-;; (add-to-list 'auto-mode-alist '("\\.java$" . malabar-mode))
