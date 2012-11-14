@@ -96,7 +96,7 @@
                          '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
 
 ;; android clean project and start debug compilation
-(defun android-start-debug ()
+(defun android-start-clean-debug ()
   (interactive)
   (android-ant "clean debug"))
 
@@ -104,6 +104,16 @@
 (defun android-install-debugapp ()
   (interactive)
   (android-ant "installd"))
+
+;; android start debug compilation
+(defun android-start-debug ()
+  (interactive)
+  (android-ant "debug"))
+
+;; android start lint checks
+(defun android-start-lint-check ()
+  (interactive)
+  (android-ant "lint"))
 
 ;; load custom theme
 (defun load-my-theme ()
@@ -178,8 +188,10 @@
 
 ;; #### KEY BINDINGS ####
 
-(global-set-key (kbd "<f3>") 'android-start-debug)
+(global-set-key (kbd "<f2>") 'android-start-debug)
+(global-set-key (kbd "<f3>") 'android-start-clean-debug)
 (global-set-key (kbd "<f4>") 'android-install-debugapp)
+(global-set-key (kbd "<f5>") 'android-start-lint-check)
 (global-set-key (kbd "<f11>") 'toggle-fullscreen)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "<C-x left>") 'winner-undo)
