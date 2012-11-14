@@ -12,3 +12,6 @@ export HISTTIMEFORMAT='%F %T '
 export HISTSIZE=100500
 # ignore dups at history
 export HISTCONTROL=ignoredups
+
+# add user bin directory
+export PATH=$PATH:$HOME/.bin
