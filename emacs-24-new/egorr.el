@@ -152,10 +152,6 @@
   ;; (semantic-mode 1)
   (require 'jde)
   (require 'jde-ecj-flymake)
-  ;; (require 'semantic/senator)
-  ;; (require 'semantic/ia)
-  ;; (require 'semantic/wisnet)
-  ;; (require 'semantic/wisnet/java-tags)
   (setq jde-auto-parse-enable nil)
   (setq jde-enable-senator nil)
   )
@@ -172,6 +168,11 @@
 (defun nxml-mode-prehooks ()
   (hl-line-mode t))
 (add-hook 'nxml-mode-hook 'nxml-mode-prehooks)
+
+;; jde mode hooks
+(defun jdee-mode-prehooks ()
+  (whitespace-mode t))
+(add-hook 'jde-mode-hook 'jdee-mode-prehooks)
 
 ;;; -------------------------------------------------------------------------------------------
 
@@ -203,10 +204,3 @@
 (add-hook 'egorr-hook (lambda () (init-my-config)))
 
 ;;; -------------------------------------------------------------------------------------------
-
-;; java mode hook
-;; (defun java-mode-prehooks ()
-;;   (whitespace-mode t)
-;;   (hl-line-mode t)
-;;   (java-mode-indent-annotations-setup))
-;; (add-hook 'java-mode-hook 'java-mode-prehooks)
