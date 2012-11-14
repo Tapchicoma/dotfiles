@@ -168,6 +168,11 @@
   (add-hook 'find-file-hook 'flymake-find-file-hook)
   )
 
+;; nxml mode hook
+(defun nxml-mode-prehooks ()
+  (hl-line-mode t))
+(add-hook 'nxml-mode-hook 'nxml-mode-prehooks)
+
 ;;; -------------------------------------------------------------------------------------------
 
 ;; #### KEY BINDINGS ####
@@ -198,14 +203,6 @@
 (add-hook 'egorr-hook (lambda () (init-my-config)))
 
 ;;; -------------------------------------------------------------------------------------------
-
-;; add java indentation to annotations
-;; (require 'java-mode-indent-annotations)
-
-;; nxml mode hook
-;; (defun nxml-mode-prehooks ()
-;;   (hl-line-mode t))
-;; (add-hook 'nxml-mode-hook 'nxml-mode-prehooks)
 
 ;; java mode hook
 ;; (defun java-mode-prehooks ()
