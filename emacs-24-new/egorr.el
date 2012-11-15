@@ -161,12 +161,18 @@
   )
 
 ;; setup jdee
+(defun organize-imports-before-save ()
+  (add-hook 'before-save-hook
+            (lambda ()
+              (jde-import-kill-extra-imports)
+              (jde-import-organize)) nil t))
 (defun setup-jdee ()
   ;; (semantic-mode 1)
   (require 'jde)
   (require 'jde-ecj-flymake)
   (setq jde-auto-parse-enable nil)
   (setq jde-enable-senator nil)
+  (add-hook 'jde-mode-hook 'organize-imports-before-save)
   )
 
 ;; setup flymake
@@ -174,8 +180,7 @@
   (require 'flymake)
   (require 'flymake-cursor)
   (add-to-list 'flymake-allowed-file-name-masks '("\\.java\\'" jde-ecj-server-flymake-init jde-ecj-flymake-cleanup))
-  (add-hook 'find-file-hook 'flymake-find-file-hook)
-  )
+  (add-hook 'find-file-hook 'flymake-find-file-hook))
 
 ;; nxml mode hook
 (defun nxml-mode-prehooks ()
