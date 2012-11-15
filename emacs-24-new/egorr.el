@@ -143,15 +143,17 @@
   (yas-global-mode 1))
 
 ;; load autocomplete
+(defun setup-jde-acsources ()
+  (require 'semantic-ia nil t)
+  (push 'ac-source-semantic ac-sources))
 (defun setup-autocomplete ()
   (require 'auto-complete-config)
   (add-to-list 'ac-dictionary-directories (concat dotfiles-dir "ac/ac-dict"))
   (ac-config-default)
   (ac-set-trigger-key "TAB")
-  (add-to-list 'ac-modes 'nxml-mode)
+  (add-to-list 'ac-modes 'nxml-modeqq)
   (add-to-list 'ac-modes 'jde-mode)
-  (add-hook 'jde-mode-hook (lambda () (push 'ac-source-semantic ac-sources)))
-  )
+  (add-hook 'jde-mode-hook 'setup-jde-acsources))
 
 ;; load android-mode
 (defun setup-android-mode ()
