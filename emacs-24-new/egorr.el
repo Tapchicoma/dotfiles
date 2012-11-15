@@ -67,6 +67,8 @@
 
 ;; jde vars
 (setq jde-compiler (quote (("eclipse java compiler server" "/home/egorr/.emacs.d/vendor/jdee/java/lib/ecj-4.3M3.jar"))))
+(setq jdibug-connect-hosts (quote ("localhost:8700")))
+(setq jde-run-option-debug (quote ("Server" "Socket" "javadebug" nil "8700" t)))
 
 ;; add loading all from vendor dir
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
@@ -82,6 +84,7 @@
 (add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/yasnippet"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/jdee/lisp"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor/jdibug-0.5"))
 
 ;;; ------------------------------------------------------------------------------------------
 
@@ -184,6 +187,10 @@
   (whitespace-mode t))
 (add-hook 'jde-mode-hook 'jdee-mode-prehooks)
 
+;; setup jdibug java debugger
+(defun setup-jdibug ()
+  (require 'jdibug))
+
 ;;; -------------------------------------------------------------------------------------------
 
 ;; #### KEY BINDINGS ####
@@ -196,6 +203,10 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "<C-x left>") 'winner-undo)
 (global-set-key (kbd "<C-x right>") 'winner-redo)
+(global-set-key (kbd "<f8>") 'jdibug-step-over)
+(global-set-key (kbd "<M-f8>") 'jdibug-step-into)
+(global-set-key (kbd "<f7>") 'jdibug-step-out)
+(global-set-key (kbd "<M-f7>") 'jdibug-resume)
 
 ;;; -------------------------------------------------------------------------------------------
 
@@ -211,6 +222,8 @@
   (setup-cedet)
   (setup-jdee)
   (setup-flymake)
+  (setup-jdibug)
+  (print "end loading my config")
   )
 
 (add-hook 'egorr-hook (lambda () (init-my-config)))
