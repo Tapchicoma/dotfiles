@@ -70,6 +70,10 @@
 (setq jdibug-connect-hosts (quote ("localhost:8700")))
 (setq jde-run-option-debug (quote ("Server" "Socket" "javadebug" nil "8700" t)))
 
+;; gtags vars
+(setq gtags-suggested-key-mapping t)
+(setq gtags-auto-update t)
+
 ;; add loading all from vendor dir
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/cogre"))
@@ -173,6 +177,7 @@
   (setq jde-auto-parse-enable nil)
   (setq jde-enable-senator nil)
   (add-hook 'jde-mode-hook 'organize-imports-before-save)
+  (add-hook 'jde-mode-hook (lambda () (gtags-mode 1)))
   )
 
 ;; setup flymake
@@ -195,6 +200,10 @@
 ;; setup jdibug java debugger
 (defun setup-jdibug ()
   (require 'jdibug))
+
+;; setup gtags
+(defun setup-gtags ()
+  (autoload 'gtags-mode "gtags" "" t))
 
 ;;; -------------------------------------------------------------------------------------------
 
@@ -228,6 +237,7 @@
   (setup-jdee)
   (setup-flymake)
   (setup-jdibug)
+  (setup-gtags)
   (print "end loading my config")
   )
 
