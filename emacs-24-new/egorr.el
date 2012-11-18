@@ -59,13 +59,16 @@
 
 ;; semantic vars
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
-                                  global-semanticdb-minor-mode
                                   global-semantic-idle-summary-mode
+                                  global-semanticdb-minor-mode
+                                  global-semantic-idle-completions-mode
                                   global-semantic-stickyfunc-mode
                                   global-semantic-mru-bookmark-mode))
-;; (setq semantic-load-turn-everything-on t)
+(setq cedet-java-jdk-root "/opt/sun-jdk-1.6.0.37/")
 
 ;; jde vars
+(setq jde-jdk-registry (quote (("1.6" . "/opt/sun-jdk-1.6.0.37"))))
+(setq jde-javadoc-gen-stylesheetfile "~/.emacs.d/other/java/javadoc/stylesheet.css")
 (setq jde-compiler (quote (("eclipse java compiler server" "/home/egorr/.emacs.d/vendor/jdee/java/lib/ecj-4.3M3.jar"))))
 (setq jdibug-connect-hosts (quote ("localhost:8700")))
 (setq jde-run-option-debug (quote ("Server" "Socket" "javadebug" nil "8700" t)))
@@ -163,6 +166,8 @@
 ;; setup cedet
 (defun setup-cedet ()
   (require 'cedet)
+  (require 'cedet-android)
+  (require 'cedet-java)
   (require 'semantic)
   )
 
