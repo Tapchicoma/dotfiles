@@ -186,6 +186,7 @@
   ;; (semantic-mode 1)
   (require 'jde)
   (require 'jde-ecj-flymake)
+  (require 'jde-javadoc)
   (setq jde-auto-parse-enable nil)
   (setq jde-enable-senator nil)
   ;; (add-hook 'jde-mode-hook 'organize-imports-before-save)
