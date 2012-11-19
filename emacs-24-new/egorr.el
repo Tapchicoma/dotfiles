@@ -70,6 +70,9 @@
 (setq jde-jdk-registry (quote (("1.6" . "/opt/sun-jdk-1.6.0.37"))))
 (setq jde-javadoc-gen-stylesheetfile "~/.emacs.d/other/java/javadoc/stylesheet.css")
 (setq jde-enable-abbrev-mode t)
+(setq jde-import-sorted-groups (quote asc))
+(setq jde-import-blank-line-between-groups t)
+(setq jde-import-group-of-rules (quote (("^javax?\\.") ("^android?\\.") ("^java?\\."))))
 (setq jde-compiler (quote (("eclipse java compiler server" "/home/egorr/.emacs.d/vendor/jdee/java/lib/ecj-4.3M3.jar"))))
 (setq jdibug-connect-hosts (quote ("localhost:8700")))
 (setq jde-run-option-debug (quote ("Server" "Socket" "javadebug" nil "8700" t)))
@@ -184,7 +187,7 @@
   (require 'jde-ecj-flymake)
   (setq jde-auto-parse-enable nil)
   (setq jde-enable-senator nil)
-  (add-hook 'jde-mode-hook 'organize-imports-before-save)
+  ;; (add-hook 'jde-mode-hook 'organize-imports-before-save)
   (add-hook 'jde-mode-hook (lambda () (gtags-mode 1)))
   )
 
