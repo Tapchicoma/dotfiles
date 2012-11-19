@@ -73,6 +73,7 @@
 (setq jde-import-sorted-groups (quote asc))
 (setq jde-import-blank-line-between-groups t)
 (setq jde-import-group-of-rules (quote (("^javax?\\.") ("^android?\\.") ("^java?\\."))))
+(setq jde-gen-method-javadoc-comment "inherit")
 (setq jde-compiler (quote (("eclipse java compiler server" "/home/egorr/.emacs.d/vendor/jdee/java/lib/ecj-4.3M3.jar"))))
 (setq jdibug-connect-hosts (quote ("localhost:8700")))
 (setq jde-run-option-debug (quote ("Server" "Socket" "javadebug" nil "8700" t)))
