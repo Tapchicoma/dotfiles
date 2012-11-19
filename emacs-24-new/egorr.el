@@ -232,6 +232,9 @@
 (global-set-key (kbd "<M-f8>") 'jdibug-step-into)
 (global-set-key (kbd "<f7>") 'jdibug-step-out)
 (global-set-key (kbd "<M-f7>") 'jdibug-resume)
+(global-set-key (kbd "<M-f5>") 'jde-wiz-override-method)
+(global-set-key (kbd "<M-f6>") 'jde-wiz-implement-interface)
+(global-set-key (kbd "<M-f7>") 'jde-wiz-get-set-method)
 
 ;;; -------------------------------------------------------------------------------------------
 
