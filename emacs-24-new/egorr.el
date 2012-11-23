@@ -159,7 +159,7 @@
   (add-to-list 'ac-dictionary-directories (concat dotfiles-dir "ac/ac-dict"))
   (ac-config-default)
   (ac-set-trigger-key "TAB")
-  (add-to-list 'ac-modes 'nxml-modeqq)
+  (add-to-list 'ac-modes 'nxml-mode)
   (add-to-list 'ac-modes 'jde-mode)
   (add-hook 'jde-mode-hook 'setup-jde-acsources))
 
