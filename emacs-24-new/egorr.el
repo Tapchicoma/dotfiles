@@ -30,7 +30,8 @@
 
 ;; whitespace mode settings
 (setq whitespace-style '(trailing lines space-before-tab
-                                  indentation space-after-tab)
+                                  indentation space-after-tab
+                                  face)
       whitespace-line-column 120)
 
 ;; Delete selection when typing
