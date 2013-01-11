@@ -12,12 +12,14 @@
 	tool = vimdiff
 [log]
 	decorate = short
-        [alias]
+[alias]
         co = checkout
         ci = commit
         st = status
         br = branch
         hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --color
+        chist = log --graph --all --format=format:'%C(bold blue)%h%C(reset) — %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+        brhist = log --graph --all --format=format:'%C(bold blue)%h%C(reset) — %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
         type = cat-file -t
         dump = cat-file -p
 [include]
