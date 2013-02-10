@@ -11,7 +11,8 @@
 ;; Load this package if they not already loaded
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings
                                   starter-kit-eshell starter-kit-js starter-kit-ruby
-                                  solarized-theme magit popup android-mode gist)
+                                  solarized-theme magit popup android-mode gist
+                                  flymake flymake-cursor)
   "A list of packages to ensure are installed at launch")
 
 (dolist (p my-packages)
