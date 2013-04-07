@@ -16,3 +16,7 @@ export HISTCONTROL=ignoredups
 
 # add user bin directory
 export PATH=$PATH:$HOME/.bin
+
+### Virtulaenvwrapper settings
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
