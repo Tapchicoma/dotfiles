@@ -1,6 +1,6 @@
 [core]
 	editor = vim
-	autocrlf = false
+	autocrlf = input
 	safecrlf = true
 [color]
 	diff = always
@@ -8,6 +8,8 @@
 	grep = auto
 	interactive = auto
 	status = false
+[merge]
+    conflictstyle = diff3
 [diff]
 	tool = vimdiff
 [log]
