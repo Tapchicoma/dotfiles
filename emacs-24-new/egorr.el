@@ -8,8 +8,8 @@
                     (or (buffer-file-name) load-file-name)))
 
 ;; Font init
-(set-face-font 'default "-unknown-Droid Sans Mono-medium-r-normal--20-0-72-72-m-0-iso10646-1")
-(set-face-attribute 'default nil :font "Droid Sans Mono-10")
+(set-face-font 'default "-misc-droid sans mono-medium-r-normal--17-120-100-100-m-0-iso10646-1")
+(set-face-attribute 'default nil :font "droid sans mono-18")
 
 ;; stop creating backup~ and #auto-save# files
 (setq make-backup-files nil)

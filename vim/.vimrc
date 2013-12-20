@@ -48,7 +48,7 @@ set ch=1
 set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&encoding}\ %b\ 0x%b\ %l,%c%v\ %p
 
 "Set font and size"
-set guifont=Droid\ Sans\ Mono\ 9
+set guifont=Droid\ Sans\ Mono\ 16
 "Set colorscheme"
 set background=dark
 colorscheme solarized
