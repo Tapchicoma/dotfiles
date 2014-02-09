@@ -8,7 +8,7 @@
                     (or (buffer-file-name) load-file-name)))
 
 ;; Font init
-(set-face-font 'default "-misc-droid sans mono-medium-r-normal--17-120-100-100-m-0-iso10646-1")
+(set-face-font 'default "-unknown-Droid sans mono-medium-r-normal--17-120-100-100-m-0-iso10646-1")
 (set-face-attribute 'default nil :font "droid sans mono-18")
 
 ;; stop creating backup~ and #auto-save# files
@@ -65,19 +65,6 @@
                                   global-semantic-idle-completions-mode
                                   global-semantic-stickyfunc-mode
                                   global-semantic-mru-bookmark-mode))
-(setq cedet-java-jdk-root "/opt/sun-jdk-1.6.0.37/")
-
-;; jde vars
-(setq jde-jdk-registry (quote (("1.6" . "/opt/sun-jdk-1.6.0.37"))))
-(setq jde-javadoc-gen-stylesheetfile "~/.emacs.d/other/java/javadoc/stylesheet.css")
-(setq jde-enable-abbrev-mode t)
-(setq jde-import-sorted-groups (quote asc))
-(setq jde-import-blank-line-between-groups t)
-(setq jde-import-group-of-rules (quote (("^javax?\\.") ("^android?\\.") ("^java?\\."))))
-(setq jde-gen-method-javadoc-comment "inherit")
-(setq jde-compiler (quote (("eclipse java compiler server" "/home/egorr/.emacs.d/vendor/jdee/java/lib/ecj-4.3M3.jar"))))
-(setq jdibug-connect-hosts (quote ("localhost:8700")))
-(setq jde-run-option-debug (quote ("Server" "Socket" "javadebug" nil "8700" t)))
 
 ;; gtags vars
 (setq gtags-suggested-key-mapping t)
@@ -96,8 +83,6 @@
 (add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/tests"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/yasnippet"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/jdee/lisp"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/jdibug-0.5"))
 
 ;;; ------------------------------------------------------------------------------------------
 
@@ -160,9 +145,7 @@
   (add-to-list 'ac-dictionary-directories (concat dotfiles-dir "ac/ac-dict"))
   (ac-config-default)
   (ac-set-trigger-key "TAB")
-  (add-to-list 'ac-modes 'nxml-mode)
-  (add-to-list 'ac-modes 'jde-mode)
-  (add-hook 'jde-mode-hook 'setup-jde-acsources))
+  (add-to-list 'ac-modes 'nxml-mode))
 
 ;; load android-mode
 (defun setup-android-mode ()
@@ -177,23 +160,6 @@
   (require 'semantic)
   )
 
-;; setup jdee
-(defun organize-imports-before-save ()
-  (add-hook 'before-save-hook
-            (lambda ()
-              (jde-import-kill-extra-imports)
-              (jde-import-organize)) nil t))
-(defun setup-jdee ()
-  ;; (semantic-mode 1)
-  (require 'jde)
-  (require 'jde-ecj-flymake)
-  (require 'jde-javadoc)
-  (setq jde-auto-parse-enable nil)
-  (setq jde-enable-senator nil)
-  ;; (add-hook 'jde-mode-hook 'organize-imports-before-save)
-  (add-hook 'jde-mode-hook (lambda () (gtags-mode 1)))
-  )
-
 ;; setup flymake
 (defun setup-flymake ()
   (require 'flymake)
@@ -205,15 +171,6 @@
 (defun nxml-mode-prehooks ()
   (hl-line-mode t))
 (add-hook 'nxml-mode-hook 'nxml-mode-prehooks)
-
-;; jde mode hooks
-(defun jdee-mode-prehooks ()
-  (whitespace-mode t))
-(add-hook 'jde-mode-hook 'jdee-mode-prehooks)
-
-;; setup jdibug java debugger
-(defun setup-jdibug ()
-  (require 'jdibug))
 
 ;; setup gtags
 (defun setup-gtags ()
@@ -231,13 +188,6 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "<C-x left>") 'winner-undo)
 (global-set-key (kbd "<C-x right>") 'winner-redo)
-(global-set-key (kbd "<f8>") 'jdibug-step-over)
-(global-set-key (kbd "<M-f8>") 'jdibug-step-into)
-(global-set-key (kbd "<f7>") 'jdibug-step-out)
-(global-set-key (kbd "<M-f7>") 'jdibug-resume)
-(global-set-key (kbd "<M-f5>") 'jde-wiz-override-method)
-(global-set-key (kbd "<M-f6>") 'jde-wiz-implement-interface)
-(global-set-key (kbd "<M-f7>") 'jde-wiz-get-set-method)
 
 ;;; -------------------------------------------------------------------------------------------
 
@@ -251,9 +201,7 @@
   (setup-autocomplete)
   (setup-android-mode)
   (setup-cedet)
-  (setup-jdee)
   (setup-flymake)
-  (setup-jdibug)
   (setup-gtags)
   (print "end loading my config")
   )
