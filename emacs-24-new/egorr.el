@@ -72,15 +72,6 @@
 
 ;; add loading all from vendor dir
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/cogre"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/common"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/contrib"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/ede"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/eieio"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/semantic"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/speedbar"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/srecode"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/cedet-1.1/tests"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/yasnippet"))
 
@@ -137,9 +128,6 @@
   (yas-global-mode 1))
 
 ;; load autocomplete
-(defun setup-jde-acsources ()
-  (require 'semantic-ia nil t)
-  (push 'ac-source-semantic ac-sources))
 (defun setup-autocomplete ()
   (require 'auto-complete-config)
   (add-to-list 'ac-dictionary-directories (concat dotfiles-dir "ac/ac-dict"))
@@ -155,8 +143,6 @@
 ;; setup cedet
 (defun setup-cedet ()
   (require 'cedet)
-  (require 'cedet-android)
-  (require 'cedet-java)
   (require 'semantic)
   )
 
