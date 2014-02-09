@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name : android toast
-# key : toast
-# --
-Toast.makeText($1, $2, Toast.${3:$$(yas/choose-value '("LENGTH_SHORT" "LENGHT_LONG"))}).show();$0

@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name : android xml namespace
-# key : xmlnsa
-# --
-xmlns:android="http://schemas.android.com/apk/res/android"
-$0
