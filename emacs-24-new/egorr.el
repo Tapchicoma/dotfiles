@@ -68,7 +68,6 @@
 
 ;; add loading all from vendor dir
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
 
 ;;; ------------------------------------------------------------------------------------------
 
@@ -178,12 +177,12 @@
   (print "load my config")
   (load-my-theme)
   (setup-winner)
-  (setup-yasnippet)
-  (setup-autocomplete)
   (setup-android-mode)
   (setup-cedet)
   (setup-flymake)
   (setup-gtags)
+  (setup-yasnippet)
+  (setup-autocomplete)
   (print "end loading my config")
   )
 
