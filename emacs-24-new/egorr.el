@@ -48,10 +48,6 @@
 (setq ispell-extra-args '("--sug-mode=fast"))
 (setq ispell-dictionary "en")
 
-;; yasnippet snippets directory
-(setq yas-snippet-dirs `(,(concat dotfiles-dir "snippets")
-                         ,(concat dotfiles-dir "vendor/yasnippet/snippets")))
-
 ;; autocomplete settings
 (setq ac-comphist-file (concat dotfiles-dir "ac/ac-comphist.dat"))
 
@@ -73,7 +69,6 @@
 ;; add loading all from vendor dir
 (add-to-list 'load-path (concat dotfiles-dir "vendor"))
 (add-to-list 'load-path (concat dotfiles-dir "vendor/auto-complete"))
-(add-to-list 'load-path (concat dotfiles-dir "vendor/yasnippet"))
 
 ;;; ------------------------------------------------------------------------------------------
 
