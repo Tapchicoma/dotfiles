@@ -50,8 +50,8 @@ set statusline=%<%f%h%m%r%=format=%{&fileformat}\ file=%{&fileencoding}\ enc=%{&
 "Set font and size"
 set guifont=Droid\ Sans\ Mono\ 16
 "Set colorscheme"
-set background=dark
-colorscheme solarized
+set background=light
+colorscheme blue
 "Включаем подсветку искомого выражения"
 set hlsearch
 "поиск по набору слова"
