@@ -1,5 +1,7 @@
 ;; #### INIT VARIABLES ###
 
+;;; Code:
+
 ;; Show debug info
 ;; (setq debug-on-error t)
 
@@ -156,6 +158,26 @@
 (defun setup-gtags ()
   (autoload 'gtags-mode "gtags" "" t))
 
+;; setup jedi for python mode
+;; it requires python-ecb and jedi python package installed
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)
+
+;; flycheck mode for python
+;; for python it requires pylint and flake8
+(add-hook 'after-init-hook 'global-flycheck-mode)
+
+;; autopair mode
+(defun setup-autopair ()
+  (require 'autopair)
+  (autopair-global-mode))
+
+;; ipython
+;; (defun setup-ipython ()
+;;   (setq ipython-command "/usr/bin/ipython")
+;;   (require 'ipython)
+;;   )
+
 ;;; -------------------------------------------------------------------------------------------
 
 ;; #### KEY BINDINGS ####
@@ -183,9 +205,12 @@
   (setup-gtags)
   (setup-yasnippet)
   (setup-autocomplete)
+  (setup-autopair)
+  ;; (setup-ipython)
   (print "end loading my config")
   )
 
 (add-hook 'egorr-hook (lambda () (init-my-config)))
 
-;;; -------------------------------------------------------------------------------------------
+(provide 'egorr)
+;;; egorr.el ends here
