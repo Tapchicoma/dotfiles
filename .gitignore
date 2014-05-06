@@ -2,6 +2,7 @@ emacs/.emacs.d/auto-save-list
 emacs/.emacs.d/var/
 emacs/.emacs.d/elpa/
 vim/.vim/.netrwhist
+vim/.vim/swp/
 emacs-24-new/elpa/
 emacs-24-new/auto-save-list/
 emacs-24-new/backups/
