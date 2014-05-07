@@ -8,6 +8,7 @@ alias ll='ls -l'
 alias git-remote-enable='ssh-agent bash; ssh-add'
 alias http-dir-server='python -m SimpleHTTPServer'
 alias nicemount='mount | column -t'
+alias myip='curl ifconfig.me'
 
 # time format at history
 export HISTTIMEFORMAT='%F %T '
