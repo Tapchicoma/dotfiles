@@ -19,5 +19,8 @@ export HISTCONTROL=ignoredups
 export PATH=$PATH:$HOME/.bin
 
 ### Virtulaenvwrapper settings
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
+if [ -f /usr/bin/virtualenvwrapper.sh ]
+then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/bin/virtualenvwrapper.sh
+fi
