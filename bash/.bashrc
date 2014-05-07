@@ -1,3 +1,4 @@
+source ~/.bin/git-prompt.sh
 source /etc/profile.d/bash-completion.sh 
 
 # Command prompt
