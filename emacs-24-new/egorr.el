@@ -61,6 +61,7 @@
                                   global-semantic-idle-summary-mode
                                   global-semanticdb-minor-mode
                                   global-semantic-idle-completions-mode
+                                  global-semantic-m3-minor-mode
                                   global-semantic-stickyfunc-mode
                                   global-semantic-mru-bookmark-mode))
 
@@ -140,6 +141,11 @@
 (defun setup-cedet ()
   (require 'cedet)
   (require 'semantic)
+
+  ;;  (semantic-mode 1)
+  (semantic-load-enable-code-helpers)
+  (global-ede-mode 1)
+  (setq ede-arduino-appdir "~/Arduino-Makefile-1.3.3/")
   )
 
 ;; setup flymake
@@ -171,6 +177,12 @@
 (defun setup-autopair ()
   (require 'autopair)
   (autopair-global-mode))
+
+;; arduino mode
+(defun setup-arduino-mode ()
+  (setq auto-mode-alist (cons '("\\.\\(pde\\|ino\\)$" . arduino-mode) auto-mode-alist))
+  (autoload 'arduino-mode "arduino-mode" "Arduino editing mode." t)
+  )
 
 ;; ipython
 ;; (defun setup-ipython ()
@@ -206,6 +218,7 @@
   (setup-yasnippet)
   (setup-autocomplete)
   (setup-autopair)
+  (setup-arduino-mode)
   ;; (setup-ipython)
   (print "end loading my config")
   )
