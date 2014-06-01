@@ -2,7 +2,11 @@ source ~/.bin/git-prompt.sh
 source /etc/profile.d/bash-completion.sh 
 
 # Command prompt
-export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w$(__git_ps1 " (%s)") \$\[\033[00m\] '
+if [[ $EUID -ne 0 ]]; then
+    export PS1='\[\033[01;31m\]\u@\h\[\033[01;34m\] \w$(__git_ps1 " (%s)") \$\[\033[00m\] '
+else
+    export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w$(__git_ps1 " (%s)") \$\[\033[00m\] '
+fi
 
 alias ll='ls -l'
 alias git-remote-enable='ssh-agent bash; ssh-add'
