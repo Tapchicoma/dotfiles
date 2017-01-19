@@ -1,0 +1,18 @@
+####
+#some useful android aliases
+####
+
+# Take screenshot
+alias screenshot="adb exec-out screencap -p > screen-$(date +"%s").png"
+
+# startintent http://example.com
+alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"
+
+# apkinstall ~/some.apk
+alias apkinstall="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X install -r $1"
+
+# rmapp com.example.android
+alias rmapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X uninstall $1"
+
+# clearapp com.example.android
+alias clearapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell pm clear $1"

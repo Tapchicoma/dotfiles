@@ -1,5 +1,5 @@
 source ~/.bin/git-prompt.sh
-source /etc/profile.d/bash-completion.sh 
+source /etc/bash/bashrc.d/bash_completion.sh 
 
 # Command prompt
 if [[ $EUID -eq 0 ]]; then
@@ -32,3 +32,9 @@ then
     export WORKON_HOME=$HOME/.virtualenvs
     source /usr/bin/virtualenvwrapper.sh
 fi
+
+# local bashrc
+source $HOME/.bashrc_local
+
+# android helpers
+source $HOME/.bashrc_android
