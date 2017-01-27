@@ -2,10 +2,11 @@ source ~/.bin/git-prompt.sh
 source /etc/bash/bashrc.d/bash_completion.sh 
 
 # Command prompt
-if [[ $EUID -eq 0 ]]; then
-    export PS1='\[\033[01;31m\]\u@\h\[\033[01;34m\] \w$(__git_ps1 " (%s)") \$\[\033[00m\] '
-else
-    export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w$(__git_ps1 " (%s)") \$\[\033[00m\] '
+function _update_ps1() {
+    PS1="$(~/powerline-shell.py $? 2> /dev/null)"
+}
+if [ "$TERM" != "linux" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
 alias ll='ls -l'
