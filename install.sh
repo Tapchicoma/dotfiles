@@ -11,8 +11,8 @@ ln -s $BASE_DIR/bash/powerline-shell.py $HOME/powerline-shell.py
 # Generate bash_completion file
 touch $HOME/.bash_completion
 echo "" > $HOME/.bash_completion
-for filename in $BASE_DIR/bash/bash_completion; do
-    echo "source ${BASE_DIR}/bash/bash_completion/${filename}" >> $HOME/.bash_completion
+for filename in $BASE_DIR/bash/bash_completion/*; do
+    echo "source ${BASE_DIR}/bash/bash_completion/${filename##*/}" >> $HOME/.bash_completion
 done
 
 # Make symlink for bin directory
