@@ -4,6 +4,9 @@
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Make symlinks to bash files (for android do it manually)
+if [ -f $HOME/.bashrc ]; then
+    rm $HOME/.bashrc
+fi
 ln -s $BASE_DIR/bash/.bashrc $HOME/.bashrc
 ln -s $BASE_DIR/bash/powerline_shell_base.py $HOME/powerline_shell_base.py
 ln -s $BASE_DIR/bash/powerline-shell.py $HOME/powerline-shell.py
