@@ -35,7 +35,11 @@ then
 fi
 
 # local bashrc
-source $HOME/.bashrc_local
+if [ -f $HOME/.bashrc_local ]; then
+    source $HOME/.bashrc_local
+fi
 
 # android helpers
-source $HOME/.bashrc_android
+if [ -f $HOME/.bashrc_android ]; then
+    source $HOME/.bashrc_android
+fi
