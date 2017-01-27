@@ -11,7 +11,7 @@ fi
 
 alias ll='ls -l'
 alias git-remote-enable='ssh-agent bash; ssh-add'
-alias http-dir-server='python -m SimpleHTTPServer'
+alias http-dir-server='python -m http.server'
 alias nicemount='mount | column -t'
 alias myip='curl ifconfig.me'
 alias dirsize='du -hd 0'
