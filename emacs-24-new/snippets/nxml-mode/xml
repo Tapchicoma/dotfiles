@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name : android xml header
-# key : xml
-# --
-<?xml version="1.0" encoding="utf-8"?>
-$0
