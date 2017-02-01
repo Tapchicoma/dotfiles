@@ -27,3 +27,6 @@ ln -s $BASE_DIR/git/.gitconfig $HOME/.gitconfig
 # Make symlinks for vim
 ln -s $BASE_DIR/vim/.vim $HOME/.vim
 ln -s $BASE_DIR/vim/.vimrc $HOME/.vimrc
+
+# Make symlinks for emacs
+ln -s $BASE_DIR/emacs-prelude $HOME/.emacs.d
