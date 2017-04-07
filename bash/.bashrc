@@ -1,5 +1,5 @@
 source ~/.bin/git-prompt.sh
-source /etc/bash/bashrc.d/bash_completion.sh 
+source /etc/bash/bashrc.d/bash_completion.sh
 
 # Command prompt
 function _update_ps1() {
@@ -17,6 +17,7 @@ alias myip='curl ifconfig.me'
 alias dirsize='du -hd 0'
 alias contsize='du -hd 1'
 alias pidcat='pidcat.py'
+alias gr='./gradlew'
 
 # time format at history
 export HISTTIMEFORMAT='%F %T '
