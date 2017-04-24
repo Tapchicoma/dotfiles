@@ -28,6 +28,7 @@
         assume = update-index --assume-unchanged
         unassume = update-index --no-assume-unchanged
         assumed = "!git ls-files -v | grep ^h | cut -c 3-"
-        snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+	squash-branch = !git reset $(git merge-base $1 $(git rev-parse --abbrev-ref HEAD)) && git add -A && :
 [include]
         path = ~/.gituser
