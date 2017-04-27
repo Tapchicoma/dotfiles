@@ -30,3 +30,6 @@ ln -s $BASE_DIR/vim/.vimrc $HOME/.vimrc
 
 # Make symlinks for emacs
 ln -s $BASE_DIR/emacs-prelude $HOME/.emacs.d
+
+# Make go home directory
+mkdir ~/.go
