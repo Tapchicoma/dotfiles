@@ -18,6 +18,7 @@ alias dirsize='du -hd 0'
 alias contsize='du -hd 1'
 alias pidcat='pidcat.py'
 alias gr='./gradlew'
+alias gro='./gradlew --offline'
 
 # time format at history
 export HISTTIMEFORMAT='%F %T '
