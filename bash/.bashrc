@@ -51,3 +51,31 @@ fi
 export GOPATH=~/.go
 export PATH=$PATH:$GOPATH/bin
 alias install-gomobile='go get golang.org/x/mobile/cmd/gomobile & gomobile init'
+
+# Open github repository page
+alias github=GitHub
+
+function GitHub()
+{
+    if [ ! -d .git ] ;
+    then echo "ERROR: This isnt a git directory" && return 0;
+    fi
+
+    git_url=`git config --get remote.origin.url`
+    git_domain=`echo $git_url | awk -v FS="(@|:)" '{print $2}'`
+    git_branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
+
+    if [[ $git_url == https://* ]];
+    then
+        url=${git_url%.git}/tree/${git_branch}
+    else
+        if [[ $git_url == git@* ]]
+        then
+            cut_off=${git_url#*:}
+            url=https://${git_domain}/${cut_off%.git}/tree/${git_branch}
+        else
+            echo "ERROR: Remote origin is invalid" && return 0;
+        fi
+    fi
+    xdg-open $url
+}
