@@ -61,6 +61,8 @@ class Powerline:
     def color(self, prefix, code):
         if code is None:
             return ''
+        elif code == Color.RESET:
+            return self.reset
         else:
             return self.color_template % ('[%s;5;%sm' % (prefix, code))
 
@@ -214,6 +216,11 @@ class DefaultColor:
     This class should have the default colors for every segment.
     Please test every new segment with this theme first.
     """
+    # RESET is not a real color code. It is used as in indicator
+    # within the code that any foreground / background color should
+    # be cleared
+    RESET = -1
+
     USERNAME_FG = 250
     USERNAME_BG = 240
     USERNAME_ROOT_BG = 124
@@ -278,7 +285,7 @@ class Color(DefaultColor):
 import os
 
 def add_virtual_env_segment(powerline):
-    env = os.getenv('VIRTUAL_ENV') or os.getenv('CONDA_ENV_PATH')
+    env = os.getenv('VIRTUAL_ENV') or os.getenv('CONDA_ENV_PATH') or os.getenv('CONDA_DEFAULT_ENV')
     if env is None:
         return
 
@@ -380,12 +387,16 @@ def maybe_shorten_name(powerline, name):
     return name
 
 
-def get_fg_bg(name):
+def get_fg_bg(name, is_last_dir):
     """Returns the foreground and background color to use for the given name.
     """
     if requires_special_home_display(name):
         return (Color.HOME_FG, Color.HOME_BG,)
-    return (Color.PATH_FG, Color.PATH_BG,)
+
+    if is_last_dir:
+        return (Color.CWD_FG, Color.PATH_BG,)
+    else:
+        return (Color.PATH_FG, Color.PATH_BG,)
 
 
 def add_cwd_segment(powerline):
@@ -420,11 +431,11 @@ def add_cwd_segment(powerline):
         names = names[-1:]
 
     for i, name in enumerate(names):
-        fg, bg = get_fg_bg(name)
+        is_last_dir = (i == len(names) - 1)
+        fg, bg = get_fg_bg(name, is_last_dir)
 
         separator = powerline.separator_thin
         separator_fg = Color.SEPARATOR_FG
-        is_last_dir = (i == len(names) - 1)
         if requires_special_home_display(name) or is_last_dir:
             separator = None
             separator_fg = None
@@ -675,17 +686,30 @@ add_fossil_segment(powerline)
 import os
 import re
 import subprocess
+import platform
 
 def add_jobs_segment(powerline):
-    pppid_proc = subprocess.Popen(['ps', '-p', str(os.getppid()), '-oppid='],
-                                  stdout=subprocess.PIPE)
-    pppid = pppid_proc.communicate()[0].decode("utf-8").strip()
+    num_jobs = 0
 
-    output_proc = subprocess.Popen(['ps', '-a', '-o', 'ppid'],
-                                   stdout=subprocess.PIPE)
-    output = output_proc.communicate()[0].decode("utf-8")
+    if platform.system().startswith('CYGWIN'):
+        # cygwin ps is a special snowflake...
+        output_proc = subprocess.Popen(['ps', '-af'], stdout=subprocess.PIPE)
+        output = map(lambda l: int(l.split()[2].strip()),
+            output_proc.communicate()[0].decode("utf-8").splitlines()[1:])
 
-    num_jobs = len(re.findall(str(pppid), output)) - 1
+        num_jobs = output.count(os.getppid()) - 1
+
+    else:
+
+        pppid_proc = subprocess.Popen(['ps', '-p', str(os.getppid()), '-oppid='],
+                                      stdout=subprocess.PIPE)
+        pppid = pppid_proc.communicate()[0].decode("utf-8").strip()
+
+        output_proc = subprocess.Popen(['ps', '-a', '-o', 'ppid'],
+                                       stdout=subprocess.PIPE)
+        output = output_proc.communicate()[0].decode("utf-8")
+
+        num_jobs = len(re.findall(str(pppid), output)) - 1
 
     if num_jobs > 0:
         powerline.append(' %d ' % num_jobs, Color.JOBS_FG, Color.JOBS_BG)
