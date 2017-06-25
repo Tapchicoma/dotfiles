@@ -106,11 +106,13 @@ __gradle-long-options() {
 
 __gradle-properties() {
     local args="-Dorg.gradle.cache.reserved.mb=   - Reserve Gradle Daemon memory for operations
+-Dorg.gradle.caching=             - Set true to enable Gradle build cache
 -Dorg.gradle.daemon.debug=        - Set true to debug Gradle Daemon
 -Dorg.gradle.daemon.idletimeout=  - Kill Gradle Daemon after # idle millis
 -Dorg.gradle.debug=               - Set true to debug Gradle Client
 -Dorg.gradle.jvmargs=             - Set JVM arguments
 -Dorg.gradle.java.home=           - Set JDK home dir
+-Dorg.gradle.logging.level=       - Set default Gradle log level (quiet warn lifecycle info debug)
 -Dorg.gradle.parallel=            - Set true to enable parallel project builds (incubating)
 -Dorg.gradle.parallel.intra=      - Set true to enable intra-project parallel builds (incubating)
 -Dorg.gradle.workers.max=         - Set the number of workers Gradle is allowed to use"
@@ -291,9 +293,12 @@ wrapper              - Generates Gradle wrapper files."
     return 0
 }
 complete -F _gradle gradle
+complete -F _gradle gradle.bat
 complete -F _gradle gradlew
+complete -F _gradle gradlew.bat
 complete -F _gradle ./gradlew
+complete -F _gradle ./gradlew.bat
 
-if hash gw 2>/dev/null; then
+if hash gw 2>/dev/null || alias gw >/dev/null 2>&1; then
     complete -F _gradle gw
 fi
