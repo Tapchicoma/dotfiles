@@ -8,8 +8,17 @@ if [ -f $HOME/.bashrc ]; then
     rm $HOME/.bashrc
 fi
 ln -s $BASE_DIR/bash/.bashrc $HOME/.bashrc
-ln -s $BASE_DIR/bash/powerline_shell_base.py $HOME/powerline_shell_base.py
-ln -s $BASE_DIR/bash/powerline-shell.py $HOME/powerline-shell.py
+
+# Install powerline shell
+pip install --user --upgrade -r install.req
+
+# Remove old powerline install
+if [ -f $HOME/powerline-shell.py ]; then
+    rm ~/powerline-shell.py
+fi
+if [ -f $HOME/powerline_shell_base.py ]; then
+    rm ~/powerline_shell_base.py
+fi
 
 # Generate bash_completion file
 touch $HOME/.bash_completion
@@ -32,4 +41,6 @@ ln -s $BASE_DIR/vim/.vimrc $HOME/.vimrc
 ln -s $BASE_DIR/emacs-prelude $HOME/.emacs.d
 
 # Make go home directory
-mkdir ~/.go
+if [ ! -d $HOME/.go ]; then
+    mkdir ~/.go
+fi
