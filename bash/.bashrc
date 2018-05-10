@@ -82,3 +82,6 @@ function GitHub()
     fi
     xdg-open $url
 }
+
+# Run one-time command from local directory with docker
+alias docker-one-time='docker run --rm -ti -w "/command" -v `pwd`:/command'
