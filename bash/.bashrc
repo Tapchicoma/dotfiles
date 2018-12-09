@@ -85,3 +85,9 @@ function GitHub()
 
 # Run one-time command from local directory with docker
 alias docker-one-time='docker run --rm -ti -w "/command" -v `pwd`:/command'
+
+# Update every package in given portage group
+function emerge-update-all() {
+     emerge -avuq $(eix -cu# $1 | tr ' ' '\n')
+}
+
