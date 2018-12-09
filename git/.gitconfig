@@ -34,3 +34,5 @@
         path = ~/.gituser
 [format]
 	signoff = true
+[pager]
+    branch = false
