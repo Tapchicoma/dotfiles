@@ -33,6 +33,9 @@ export HISTCONTROL=ignoredups
 # add user bin directory
 export PATH=$PATH:$HOME/.bin
 
+# Always show all updates list
+export EIX_LIMIT_COMPACT=0
+
 ### Virtulaenvwrapper settings
 if [ -f /usr/bin/virtualenvwrapper.sh ]
 then
