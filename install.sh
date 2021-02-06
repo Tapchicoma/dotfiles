@@ -55,11 +55,6 @@ if ! [ -L $vimrc ]; then
     ln -s $BASE_DIR/vim/.vimrc $vimrc
 fi
 
-# Make go home directory
-if [ ! -d $HOME/.go ]; then
-    mkdir ~/.go
-fi
-
 ###
 # Installs emacs configuration
 ###

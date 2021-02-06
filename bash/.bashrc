@@ -56,11 +56,6 @@ if [ -f $HOME/.bashrc_android ]; then
     source $HOME/.bashrc_android
 fi
 
-# Go lang specific settings
-export GOPATH=~/.go
-export PATH=$PATH:$GOPATH/bin
-alias install-gomobile='go get golang.org/x/mobile/cmd/gomobile & gomobile init'
-
 # Open github repository page
 alias github=GitHub
 
