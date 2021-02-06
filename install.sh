@@ -3,6 +3,9 @@
 # Installs all symlinks for current user
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Private configurations directory
+SHARED_CONFIG_DIR=$HOME/cloud/shared_config/
+
 # Make symlinks to bash files (for android do it manually)
 if [ -f $HOME/.bashrc ]; then
     rm $HOME/.bashrc
@@ -52,13 +55,50 @@ if ! [ -L $vimrc ]; then
     ln -s $BASE_DIR/vim/.vimrc $vimrc
 fi
 
-# Make symlinks for emacs
-emacsrc=$HOME/.emacs.d
-if ! [ -L $emacsrc ]; then
-    ln -s $BASE_DIR/emacs-prelude $emacsrc
-fi
+###
+# Installs emacs configuration
+###
+function configure_emacs {
+    echo "Installing emacs configuration..."
+
+    # Initialize doom-emacs sub-module
+    git submodule init -- emacs/doom-emacs
+
+    # Link emacs-doom
+    emacs_source=$BASE_DIR/emacs/doom-emacs
+    emacs_src=$HOME/.emacs.d
+    if ! [ -L $emacs_src ]; then
+        ln -s $emacs_source $emacs_src
+    fi
+
+    # Link private doom configuration
+    emacs_shared_config=$SHARED_CONFIG_DIR/emacs/doom
+    emacs_cfg=$HOME/.doom.d
+    if ! [ -L $emacs_cfg ]; then
+        ln -s $emacs_shared_config $emacs_cfg
+    fi
+
+    # Run doom sync
+    $emacs_source/bin/doom sync
+
+    # Run doom doctor to check installation issues
+    $emacs_source/bin/doom doctor
+}
 
 # Make go home directory
 if [ ! -d $HOME/.go ]; then
     mkdir ~/.go
 fi
+
+###
+# Ask user for installation options
+###
+
+read -p "Install emacs configuration? [y]:" emacs_answer
+case ${emacs_answer:0:1} in
+    n|N )
+        ;;
+    * )
+        configure_emacs
+        ;;
+esac
