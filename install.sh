@@ -55,6 +55,11 @@ if ! [ -L $vimrc ]; then
     ln -s $BASE_DIR/vim/.vimrc $vimrc
 fi
 
+# Make go home directory
+if [ ! -d $HOME/.go ]; then
+    mkdir ~/.go
+fi
+
 ###
 # Installs emacs configuration
 ###
@@ -84,11 +89,6 @@ function configure_emacs {
     # Run doom doctor to check installation issues
     $emacs_source/bin/doom doctor
 }
-
-# Make go home directory
-if [ ! -d $HOME/.go ]; then
-    mkdir ~/.go
-fi
 
 ###
 # Ask user for installation options
