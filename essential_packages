@@ -1,0 +1,11 @@
+# List of basic useful packages to install
+# One per line
+app-shells/bash-completion
+sys-apps/exa
+sys-apps/ripgrep
+sys-apps/bat
+dev-vcs/git
+media-fonts/fira-code
+dev-python/pip
+dev-python/virtualenvwrapper
+app-eselect/eselect-repository

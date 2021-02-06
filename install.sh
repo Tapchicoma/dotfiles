@@ -91,14 +91,28 @@ function configure_emacs {
 }
 
 ###
+# Installs a list of essential packages
+#
+# Modify 'essential_packages' file to add/remove package
+###
+function install_essential_packages {
+    echo "Installing essential packages"
+    sudo emerge -av --autounmask y $(/bin/grep -v -R "^#" $BASE_DIR/essential_packages)
+}
+
+###
 # Ask user for installation options
 ###
+function ask_install {
+    read -p "$1? [y] " answer
+    case ${answer:0:1} in
+        n|N|no|NO|No )
+            ;;
+        * )
+            $2
+            ;;
+    esac
+}
 
-read -p "Install emacs configuration? [y]:" emacs_answer
-case ${emacs_answer:0:1} in
-    n|N )
-        ;;
-    * )
-        configure_emacs
-        ;;
-esac
+ask_install "Install essential packages" install_essential_packages
+ask_install "Install emacs configuration" configure_emacs

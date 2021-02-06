@@ -22,6 +22,9 @@ alias contsize='du -hd 1'
 alias pidcat='python2.7 ~/.bin/pidcat.py'
 alias gr='./gradlew'
 alias gro='./gradlew --offline'
+alias cat='bat'
+alias grep='rg'
+alias ls='exa'
 
 # time format at history
 export HISTTIMEFORMAT='%F %T '
