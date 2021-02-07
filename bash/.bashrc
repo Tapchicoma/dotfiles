@@ -39,6 +39,9 @@ export PATH=$PATH:$HOME/.bin
 # Always show all updates list
 export EIX_LIMIT_COMPACT=0
 
+# Better GTK apps integration into KDE
+export GTK_USE_PORTAL=1
+
 ### Virtulaenvwrapper settings
 if [ -f /usr/bin/virtualenvwrapper.sh ]
 then
