@@ -9,3 +9,10 @@ media-fonts/fira-code
 dev-python/pip
 dev-python/virtualenvwrapper
 app-eselect/eselect-repository
+# Required by doom-emacs
+app-misc/jq
+app-text/grip
+media-gfx/graphviz
+sys-apps/fd
+dev-util/shellcheck-bin
+app-text/discount
