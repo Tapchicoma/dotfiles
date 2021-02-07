@@ -62,7 +62,7 @@ function configure_emacs {
     echo "Installing emacs configuration..."
 
     # Initialize doom-emacs sub-module
-    git submodule init -- emacs/doom-emacs
+    git submodule update -- emacs/doom-emacs
 
     # Link emacs-doom
     emacs_source=$BASE_DIR/emacs/doom-emacs
