@@ -16,3 +16,5 @@ media-gfx/graphviz
 sys-apps/fd
 dev-util/shellcheck-bin
 app-text/discount
+# Gentoo specific
+app-emacs/ebuild-mode
