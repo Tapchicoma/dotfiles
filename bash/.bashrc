@@ -6,9 +6,9 @@ source /etc/bash/bashrc.d/bash_completion.sh
 # Command prompt
 export PATH=$PATH:~/.local/bin
 function _update_ps1() {
-    PS1="$(powerline-shell $?)"
+    PS1="$(powerline-go -error $? -colorize-hostname -hostname-only-if-ssh)"
 }
-if [ "$TERM" != "linux" ]; then
+if [ "$TERM" != "linux" ] && [ -f "/usr/bin/powerline-go" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 

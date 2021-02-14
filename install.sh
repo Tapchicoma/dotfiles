@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Installs all symlinks for current user
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -13,17 +13,6 @@ fi
 bashrc=$HOME/.bashrc
 if ! [ -L $bashrc ]; then
     ln -s $BASE_DIR/bash/.bashrc $bashrc
-fi
-
-# Install powerline shell
-pip install --user --upgrade -r install.req
-
-# Remove old powerline install
-if [ -f $HOME/powerline-shell.py ]; then
-    rm $HOME/powerline-shell.py
-fi
-if [ -f $HOME/powerline_shell_base.py ]; then
-    rm $HOME/powerline_shell_base.py
 fi
 
 # Generate bash_completion file
@@ -58,7 +47,7 @@ fi
 ###
 # Installs emacs configuration
 ###
-function configure_emacs {
+configure_emacs() {
     echo "Installing emacs configuration..."
 
     # Initialize doom-emacs sub-module
@@ -90,7 +79,7 @@ function configure_emacs {
 #
 # Modify 'essential_packages' file to add/remove package
 ###
-function install_essential_packages {
+install_essential_packages() {
     echo "Installing essential packages"
     sudo emerge -av --autounmask y $(/bin/grep -v -R "^#" $BASE_DIR/essential_packages)
 }
@@ -98,7 +87,7 @@ function install_essential_packages {
 ###
 # Ask user for installation options
 ###
-function ask_install {
+ask_install() {
     read -p "$1? [y] " answer
     case ${answer:0:1} in
         n|N|no|NO|No )
@@ -109,5 +98,28 @@ function ask_install {
     esac
 }
 
+###
+# Ask user to add TapokOverlay repository
+###
+add_tapok_overlay() {
+    if ! eselect repository list -i | grep -q "TapokOverlay"; then
+        eselect repository add TapokOverlay git https://github.com/Tapchicoma/TapokOverlay.git
+        emerge --sync TapokOverlay
+        echo "Overlay was added successfully"
+    else
+        echo "Overlay was already added"
+    fi
+}
+
+###
+# Install powerline prompt
+###
+install_powerline_prompt() {
+    sudo echo "app-shells/powerline-go" | sudo tee /etc/portage/package.accept_keywords/powerline-go > /dev/null
+    emerge -v powerline-go
+}
+
 ask_install "Install essential packages" install_essential_packages
+ask_install "Add TapokOverlay repository" add_tapok_overlay
+ask_install "Install powerline shell prompt" install_powerline_prompt
 ask_install "Install emacs configuration" configure_emacs
