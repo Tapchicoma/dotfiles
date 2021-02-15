@@ -1,7 +1,5 @@
 source /etc/profile
-source ~/.bin/git-prompt.sh
 source /etc/bash/bashrc.d/bash_completion.sh
-
 
 # Command prompt
 export PATH=$PATH:~/.local/bin
