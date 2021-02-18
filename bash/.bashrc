@@ -20,9 +20,17 @@ alias contsize='du -hd 1'
 alias pidcat='python2.7 ~/.bin/pidcat.py'
 alias gr='./gradlew'
 alias gro='./gradlew --offline'
-alias cat='bat'
-alias grep='rg'
-alias ls='exa'
+
+# Optional aliases if required binaries are installed
+if [ -f "/usr/bin/bat" ]; then
+    alias cat='bat'
+fi
+if [ -f "/usr/bin/rg" ]; then
+    alias grep='rg'
+fi
+if [ -f "/usr/bin/exa" ]; then
+    alias ls='exa'
+fi
 
 # time format at history
 export HISTTIMEFORMAT='%F %T '
