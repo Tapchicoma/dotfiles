@@ -9,6 +9,7 @@ media-fonts/fira-code
 dev-python/pip
 dev-python/virtualenvwrapper
 app-eselect/eselect-repository
+app-admin/sudo
 # Required by doom-emacs
 app-misc/jq
 app-text/grip
