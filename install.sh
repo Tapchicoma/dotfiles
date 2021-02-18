@@ -66,6 +66,8 @@ ask_install() {
 # Ask user to add TapokOverlay repository
 ###
 add_tapok_overlay() {
+    [ -d /etc/portage/repos.conf ] || mkdir -p /etc/portage/repos.conf
+
     if ! eselect repository list -i | grep -q "TapokOverlay"; then
         eselect repository add TapokOverlay git https://github.com/Tapchicoma/TapokOverlay.git
         emerge --sync TapokOverlay
