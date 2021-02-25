@@ -143,6 +143,16 @@ configure_vim() {
     fi
 }
 
+###
+# Link pass configuration
+###
+install_pass() {
+    sudo emerge -av app-admin/pass app-admin/pass-otp
+
+    # Make symlink to the pass configuration
+    ln -s ~/cloud/shared_config/pass ~/.password-store
+}
+
 ask_install "Install essential packages" install_essential_packages
 ask_install "Add TapokOverlay repository" add_tapok_overlay
 ask_install "Install powerline shell prompt" install_powerline_prompt
@@ -151,3 +161,4 @@ ask_install "Install vim configuration" configure_vim
 ask_install "Install git configuration" configure_git
 ask_install "Configure bash shell" configure_bash
 ask_install "Add custom binaries" configure_custom_bin
+ask_install "Install pass configuration" install_pass
