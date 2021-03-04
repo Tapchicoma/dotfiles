@@ -48,6 +48,10 @@ export EIX_LIMIT_COMPACT=0
 # Better GTK apps integration into KDE
 export GTK_USE_PORTAL=1
 
+# Firefox
+# Enable new xinput support
+export MOZ_USE_XINPUT2="1"
+
 ### Virtulaenvwrapper settings
 if [ -f /usr/bin/virtualenvwrapper.sh ]
 then
