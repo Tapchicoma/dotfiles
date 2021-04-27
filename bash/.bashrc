@@ -20,6 +20,7 @@ alias contsize='du -hd 1'
 alias pidcat='python2.7 ~/.bin/pidcat.py'
 alias gr='./gradlew'
 alias gro='./gradlew --offline'
+alias update-world='emerge -uDUav @world --keep-going'
 
 # Optional aliases if required binaries are installed
 if [ -f "/usr/bin/bat" ]; then
