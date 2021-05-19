@@ -53,6 +53,27 @@ export GTK_USE_PORTAL=1
 # Enable new xinput support
 export MOZ_USE_XINPUT2="1"
 
+# fzf settings
+if [ -f "/usr/bin/fzf" ]; then
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+    export FZF_DEFAULT_COMMAND='fd --type f'
+
+    function fzf-history() {
+        result=$(history | fzf +s --tac | cut -d " " -f6-)
+        read -r -e -i "$result" command
+        $command
+    }
+
+    function fzf-kill() {
+        term_width=$(($(tput cols) / 2))
+        app_pid=$(ps -ef | sed 1d | fzf -m --preview "echo {} | fold -s -w $term_width" | awk '{print $2}')
+        kill $app_pid
+    }
+
+    alias fzf-cat='fzf | cat $(head -1)'
+    alias fzf-emacs='fzf | emacsclient -n -q $(head -1)'
+fi
+
 ### Virtulaenvwrapper settings
 if [ -f /usr/bin/virtualenvwrapper.sh ]
 then

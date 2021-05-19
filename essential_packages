@@ -15,7 +15,9 @@ app-misc/jq
 app-text/grip
 media-gfx/graphviz
 sys-apps/fd
+app-shells/fzf
 dev-util/shellcheck-bin
 app-text/discount
+dev-util/git-delta
 # Gentoo specific
 app-emacs/ebuild-mode
