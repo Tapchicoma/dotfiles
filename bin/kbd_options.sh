@@ -7,7 +7,7 @@ set -euo pipefail
 
 sleep 1
 DISPLAY=":0.0"
-XAUTHORITY=$HOME/.Xauthority
+XAUTHORITY=$( find /tmp/xauth_* -type f )
 export DISPLAY XAUTHORITY HOME
 
 
