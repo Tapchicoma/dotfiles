@@ -38,9 +38,14 @@
     assumed = "!git ls-files -v | grep ^h | cut -c 3-"
 	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 	squash-branch = !git reset $(git merge-base $1 $(git rev-parse --abbrev-ref HEAD)) && git add -A && :
+    kwt-add-b = "!dir_name=$(echo \"${2##*/}\") && git worktree add -b \"$2\" \"$1/$dir_name\" && echo \"$2\" > \"$1/$dir_name/.idea/.name\" && cp local.properties $1/$dir_name/ #"
+    kwt-add = "!dir_name=$(echo \"${2##*/}\") && git worktree add \"$1/$dir_name\" \"$2\" && echo \"$2\" > \"$1/$dir_name/.idea/.name\" && cp local.properties $1/$dir_name/ #"
 [include]
         path = ~/.gituser
 [format]
 	signoff = true
 [pager]
     branch = false
+
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
