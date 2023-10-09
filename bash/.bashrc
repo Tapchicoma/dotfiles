@@ -31,8 +31,8 @@ fi
 if [ -f "/usr/bin/rg" ]; then
     alias grep='rg'
 fi
-if [ -f "/usr/bin/exa" ]; then
-    alias ls='exa'
+if [ -f "/usr/bin/eza" ]; then
+    alias ls='eza'
 fi
 
 # time format at history
