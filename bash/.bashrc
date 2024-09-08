@@ -20,6 +20,7 @@ alias contsize='du -hd 1'
 alias pidcat='python2.7 ~/.bin/pidcat.py'
 alias gr='./gradlew'
 alias gro='./gradlew --offline'
+alias grcc='./gradlew --configuration-cache'
 alias update-world='emerge -uDUav @world --keep-going'
 # Workaround for 'xclip' from https://bugs.kde.org/show_bug.cgi?id=395284
 alias xclip-klipper='xclip -rmlastnl -selection clipboard'
