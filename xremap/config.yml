@@ -1,0 +1,7 @@
+modmap:
+  - name: Capslock as Ctrl
+    remap:
+      CapsLock: Ctrl_l
+      Ctrl_l: CapsLock
+    device:
+      only: 'USB-HID Keyboard'
