@@ -71,9 +71,21 @@ add_tapok_overlay() {
     if ! eselect repository list -i | grep -q "TapokOverlay"; then
         eselect repository add TapokOverlay git https://github.com/Tapchicoma/TapokOverlay.git
         emerge --sync TapokOverlay
-        echo "Overlay was added successfully"
+        echo "Tapok overlay was added successfully"
     else
-        echo "Overlay was already added"
+        echo "Tapok overlay was already added"
+    fi
+}
+
+add_zucca_overlay() {
+    [ -d /etc/portage/repos.conf ] || mkdir -p /etc/portage/repos.conf
+
+    if ! eselect repository list -i | grep -q "zucca"; then
+        eselect repository add zucca git https://codeberg.org/Zucca/gentoo-overlay.git
+        emerge --sync zucca
+        echo "Zucca overlay was added successfully"
+    else
+        echo "Zucca overlay was already added"
     fi
 }
 
@@ -153,6 +165,20 @@ install_pass() {
     ln -s ~/cloud/shared_config/pass ~/.password-store
 }
 
+###
+# Install blesh and atuin config
+###
+install_atuin() {
+    add_zucca_overlay
+    # Only Ble head is working with latest Bash
+    echo "app-shells/blesh **" > /etc/portage/package.accept_keywords/blesh
+    emerge -av app-shells/blesh app-shells/atuin
+    echo 'eval "$(atuin init bash)"' >> ~/.bashrc_atuin
+    rm ~/.config/atuin/config.toml
+    ln -s $BASE_DIR/atuin/config.toml ~/.config/atuin/config.toml
+    source ~/.bashrc
+}
+
 ask_install "Install essential packages" install_essential_packages
 ask_install "Add TapokOverlay repository" add_tapok_overlay
 ask_install "Install powerline shell prompt" install_powerline_prompt
@@ -162,3 +188,4 @@ ask_install "Install git configuration" configure_git
 ask_install "Configure bash shell" configure_bash
 ask_install "Add custom binaries" configure_custom_bin
 ask_install "Install pass configuration" install_pass
+ask_install "Install Atuin configuration" install_atuin

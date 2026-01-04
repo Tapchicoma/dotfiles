@@ -94,6 +94,12 @@ if [ -f $HOME/.bashrc_android ]; then
     source $HOME/.bashrc_android
 fi
 
+# atuin integration
+if [ -f $HOME/.bashrc_atuin ]; then
+    source /usr/share/blesh/ble.sh
+    source $HOME/.bashrc_atuin
+fi
+
 # Open github repository page
 alias github=GitHub
 
